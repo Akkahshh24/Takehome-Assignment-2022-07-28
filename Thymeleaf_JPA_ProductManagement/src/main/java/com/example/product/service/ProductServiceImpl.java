@@ -44,15 +44,30 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> searchByName(String name) {
+	public List<Product> findByName(String name) {
 		List<Product> results = null;
 		
 		if(name != null && (name.trim().length() > 0)) {
-			results = productRepo.findByNameLike(name);
+			results = productRepo.findByName(name);
 		}
 		else {
 			results = findAll();
 		}
+		return results;
+	}
+	
+
+	@Override
+	public List<Product> findByCategoryId(Integer categoryId) {
+		List<Product> results = null;
+		
+		if(categoryId!= 0 && (categoryId>0)) {
+			results = productRepo.findByCategoryId(categoryId);
+		}
+		else {
+			results = findAll();
+		}
+		
 		return results;
 	}
 

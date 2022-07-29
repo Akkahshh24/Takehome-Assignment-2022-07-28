@@ -10,5 +10,9 @@ import com.example.product.entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
-	public List<Product> findByNameLike(String name);
+	//public List<Product> findByNameLike(String name);
+	
+	public List<Product> findByName(String name);
+
+	public List<Product> findByCategoryId(Integer categoryId);
 }

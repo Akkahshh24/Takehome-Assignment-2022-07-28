@@ -53,11 +53,18 @@ public class ProductController {
 		return "redirect:/products/productList";
 	}
 	
-	@GetMapping("/search")
-	public String search(@RequestParam("productName") String name, Model model) {
-		List<Product> productList = productService.searchByName(name);
+	@GetMapping("/searchByName")
+	public String searchByName(@RequestParam("productName") String name, Model model) {
+		List<Product> productList = productService.findByName(name);
 		model.addAttribute("PRODUCT", productList);
-		return "productUI/productList";
+		return "productUI/products.html";
+	}
+	
+	@GetMapping("/searchByCategory")
+	public String searchbyCategory(@RequestParam("productCategory") Integer categoryId, Model model) {
+		List<Product> productList = productService.findByCategoryId(categoryId);
+		model.addAttribute("PRODUCT", productList);
+		return "/productUI/products.html";
 	}
 
 }
