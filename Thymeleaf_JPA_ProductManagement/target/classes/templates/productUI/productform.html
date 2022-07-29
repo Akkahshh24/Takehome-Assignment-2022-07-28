@@ -50,6 +50,15 @@
 				&nbsp;
 				<div class="row">
 					<div class="col-sm-3">
+						<label class="col-form-label">Image URL</label>
+					</div>
+					<div class="col-sm-6">
+						<input type="text" name="imageurl" th:field="*{imageUrl}"/>
+					</div>
+				</div>
+				&nbsp;
+				<div class="row">
+					<div class="col-sm-3">
 						<label class="col-form-label">Unit Price</label>
 					</div>
 					<div class="col-sm-6">
@@ -89,7 +98,7 @@
 						<label class="col-form-label">Category</label>
 					</div>
 					<div class="col-sm-6">
-						<select name="category" th:field="*{categoryId}">
+						<select name="category" th:field="*{category.categoryId}">
 							<option value="1">Food & Beverages</option>
 							<option value="2">Electronics</option>
 							<option value="3">Fashion</option>

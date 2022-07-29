@@ -9,12 +9,12 @@ import javax.persistence.Table;
 @Table(name="productcategory")
 public class ProductCategory {
 	
-	@Column(name="categoryid")
 	@Id		// primary key
+	@Column(name="categoryid")
 	private Integer categoryId;
 	
 	@Column(name="categoryname")
-	private String categoryName;
+	private String name;
 	
 	public ProductCategory() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ public class ProductCategory {
 
 	public ProductCategory(Integer categoryId, String categoryName) {
 		this.categoryId = categoryId;
-		this.categoryName = categoryName;
+		this.name = categoryName;
 	}
 
 	public Integer getCategoryId() {
@@ -34,16 +34,16 @@ public class ProductCategory {
 	}
 
 	public String getCategoryName() {
-		return categoryName;
+		return name;
 	}
 
 	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+		this.name = categoryName;
 	}
 
 	@Override
 	public String toString() {
-		return "ProductCategory [categoryId=" + categoryId + ", categoryName=" + categoryName + "]";
+		return "ProductCategory [categoryId=" + categoryId + ", categoryName=" + name + "]";
 	}
 	
 }

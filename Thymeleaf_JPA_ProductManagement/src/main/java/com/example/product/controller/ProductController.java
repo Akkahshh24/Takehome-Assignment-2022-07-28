@@ -61,8 +61,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/searchByCategory")
-	public String searchbyCategory(@RequestParam("productCategory") Integer categoryId, Model model) {
-		List<Product> productList = productService.findByCategoryId(categoryId);
+	public String searchbyCategory(@RequestParam("productCategory") String name, Model model) {
+		List<Product> productList = productService.findByCategoryName(name);
 		model.addAttribute("PRODUCT", productList);
 		return "/productUI/products.html";
 	}

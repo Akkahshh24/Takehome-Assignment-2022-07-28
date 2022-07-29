@@ -12,15 +12,25 @@
 		<title>Products List</title>
 	</head>
 	<body>
-	<a th:href="@{/products/showFormForAdd}" class ="btn btn-secondary btn-sm mb-3" style="float:right; margin-right:20px;">Add Product</a>
-		<form th:action="@{/products/searchByName}" class="form-inline">
-			<input class="form-control ml-5 mr-sm-2 mb-3" type ="search" name="productName" placeholder="Search by Name" />
-				<button class="btn btn-secondary mb-3" type="submit">Search</button>
-		</form>
-		<form th:action="@{/products/searchByCategory}" class="form-inline">
-			<input class="form-control ml-5 mr-sm-2 mb-3" type ="search" name="productCategory" placeholder="Search by Category" />
-				<button class="btn btn-secondary mb-3" type="submit">Search</button>
-		</form>
+		<div class="row justify-content-center" style="margin: 20px;;">
+			<div class="col-sm-3">
+				<form th:action="@{/products/searchByName}" class="form-inline">
+					<input class="form-control ml-5 mr-sm-2 mb-3" type ="search" name="productName" placeholder="Search by Name" />
+						<button class="btn btn-primary mb-3" type="submit">Search</button>
+						<button class="btn btn-secondary mb-3" type="clear">Clear</button>
+				</form>
+			</div>
+			<div class="col-sm-3">
+				<form th:action="@{/products/searchByCategory}" class="form-inline">
+					<input class="form-control ml-5 mr-sm-2 mb-3" type ="search" name="productCategory" placeholder="Search by Category" />
+						<button class="btn btn-primary mb-3" type="submit">Search</button>
+						<button class="btn btn-secondary mb-3" type="clear">Clear</button>
+				</form>
+			</div>
+			<div class="col-sm-3">
+				<a th:href="@{/products/showFormForAdd}" class ="btn btn-success mb-3" style="float: right;">Add New Product</a>
+			</div>
+		</div>
 		<div class="container-fluid" style="margin-top: 20px;">
 		<h3>Products List</h3>
 			<table class="table table-bordered table-striped">
@@ -30,11 +40,12 @@
 						<th>SKU</th>
 						<th>Name</th>
 						<th>Description</th>
+						<th>Image</th>
 						<th>Unit Price</th>
 						<th>Units In Stock</th>
 						<th>Date Created</th>
 						<th>Last Updated</th>
-						<th>Category ID</th>
+						<th>Category</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -43,15 +54,16 @@
 					<td th:text="${p.sku}"/> 
 					<td th:text="${p.name}"/>
 					<td th:text="${p.description}"/>
+					<td><img th:src="${p.imageUrl}" width="120"/></td>
 					<td th:text="${p.unitPrice}"/>
 					<td th:text="${p.unitsInStock}"/>
 					<td th:text="${p.dateCreated}"/>
 					<td th:text="${p.lastUpdated}"/>
-					<td th:text="${p.categoryId}"/>
+					<td th:text="${p.getCategory().getCategoryName()}"/>
 					<td>
-						<a th:href="@{/products/showFormForUpdate(productId=${p.id})}" class="btn btn-secondary btn-sm">Update</a>
+						<a th:href="@{/products/showFormForUpdate(productId=${p.id})}" class="btn btn-primary btn-sm">Update</a>
 						<br><br>
-						<a th:href="@{/products/delete(productId=${p.id})}" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+						<a th:href="@{/products/delete(productId=${p.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
 					</td>
 				</tr>
 			</table>

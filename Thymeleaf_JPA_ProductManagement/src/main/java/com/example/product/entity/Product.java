@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,8 +44,9 @@ public class Product {
 	@Column(name="lastupdated")
 	private Date lastUpdated;
 	
-	@Column(name="categoryid")
-	private Integer categoryId;
+	@OneToOne
+	@JoinColumn(name = "categoryid")
+	private ProductCategory category;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -60,7 +63,7 @@ public class Product {
 		this.unitsInStock = unitsInStock;
 		this.dateCreated = dateCreated;
 		this.lastUpdated = lastUpdated;
-		this.categoryId = categoryId;
+		this.category.setCategoryId(categoryId);
 	}
 
 	public Integer getId() {
@@ -134,20 +137,20 @@ public class Product {
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
-
-	public Integer getCategoryId() {
-		return categoryId;
+	
+	public ProductCategory getCategory() {
+		return category;
 	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	
+	public void setCategory(ProductCategory category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", sku=" + sku + ", name=" + name + ", description=" + description + ", unitPrice="
 				+ unitPrice + ", imageUrl=" + imageUrl + ", unitsInStock=" + unitsInStock + ", dateCreated="
-				+ dateCreated + ", lastUpdated=" + lastUpdated + ", categoryId=" + categoryId + "]";
+				+ dateCreated + ", lastUpdated=" + lastUpdated + ", categoryId=" + category.getCategoryId() + "]";
 	}
 	
 }
